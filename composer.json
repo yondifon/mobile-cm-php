@@ -1,0 +1,19 @@
+{
+    "name": "malico/mobile-cm",
+    "description": "Get Telephone number's Mobile Network",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Malico",
+            "email": "hi@malico.me"
+        }
+
+    ],
+    "autoload":
+    {
+        "psr-4":
+        {
+            "Malico\\MobileCM\\": "src/"
+        }
+    }
+}
