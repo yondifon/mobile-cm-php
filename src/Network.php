@@ -20,15 +20,21 @@ class Network
      * Operator Prefixes
      */
     const OPERATOR_PREFIXES = [
-        'mtn' => [67, 650, 651, 652,653,654],
-        'orange' => [69, 655, 656, 657,658,659],
-        'nexttel' => [66]
+        'mtn' => [
+            67, 650, 651, 652, 653, 654, 680, 681, 682, 683
+        ],
+        'orange' => [
+            69, 655, 656, 657, 658, 659
+        ],
+        'nexttel' => [
+            66
+        ]
     ];
 
     /**
      * Check if phone is valid length
      *
-     * @param  string|int $tel
+     * @param string|int $tel
      *
      * @return bool
      */
@@ -46,8 +52,8 @@ class Network
     /**
      * Match Tel to Prefix
      *
-     * @param  string|int $tel
-     * @param  string $key
+     * @param string|int $tel
+     * @param string $key
      *
      * @return bool
      */
@@ -57,12 +63,12 @@ class Network
             return false;
         }
 
-        $operator_prefixESes = trim(
+        $operator_prefixes = trim(
             join("|", self::OPERATOR_PREFIXES[$key]),
             "|"
         );
         
-        $expression = "/^((\+|(0{2}))?". self::PREFIX . ")?((". $operator_prefixESes . ")([0-9]{6,7}))$/";
+        $expression = "/^((\+|(0{2}))?". self::PREFIX . ")?((". $operator_prefixes . ")([0-9]{6,7}))$/";
 
         return  preg_match($expression, $tel) ? true : false;
     }
@@ -96,7 +102,7 @@ class Network
      *
      * @param string | int  $tel
      *
-     * @return  bool
+     * @return bool
      */
     public static function isNexttel($tel) : bool
     {
@@ -108,7 +114,7 @@ class Network
      *
      * @param string | int  $tel
      *
-     * @return  bool
+     * @return bool
      */
     public static function check($tel)
     {
