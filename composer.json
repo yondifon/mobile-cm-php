@@ -1,5 +1,5 @@
 {
-    "name": "malico/mobile-cm",
+    "name": "malico/mobile-cm-php",
     "description": "Get Telephone number's Mobile Network",
     "license": "MIT",
     "authors": [
@@ -15,5 +15,6 @@
         {
             "Malico\\MobileCM\\": "src/"
         }
-    }
+    },
+    "minimum-stability": "dev"
 }
