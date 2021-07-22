@@ -2,17 +2,19 @@
     "name": "malico/mobile-cm-php",
     "description": "Get Telephone number's Mobile Network",
     "license": "MIT",
+    "archive": {
+        "exclude": [
+            "tests"
+        ]
+    },
     "authors": [
         {
             "name": "Malico",
             "email": "hi@malico.me"
         }
-
     ],
-    "autoload":
-    {
-        "psr-4":
-        {
+    "autoload": {
+        "psr-4": {
             "Malico\\MobileCM\\": "src/"
         }
     },
