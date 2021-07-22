@@ -2,11 +2,13 @@
 
 Determine mobile telephone operator from user number (Cameroon)
 
+### Installation
 
-### Installation 
-```composer require malico/mobile-cm-php```
+```bash
+composer require malico/mobile-cm-php
+```
 
-### Usage 
+### Usage
 
 ```php
 
@@ -22,15 +24,23 @@ $phone = '00237653956703';
 // $phone = '653956703';
 
 echo Network::check($phone);
-// nexttel | mtn | orange
+// nexttel | mtn | orange | camtel
 
 if (Network::isOrange($phone)) {
     echo 'Orange';
 }
-// Network::isMTN($phone)
-// Network::isNexttel($phone)
+if (Network::IsNexttel($phone)) {
+    echo 'Nextel';
+}
+
+if (Network::isCamtel($phone)) {
+    echo 'Camtel';
+}
 
 
 ?>
 ```
+
 Simple. But useful
+
+    * Camtel numbers are tricky. Not sure. Feel feel free to send in a PR for that.

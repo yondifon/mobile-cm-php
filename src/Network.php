@@ -2,37 +2,40 @@
 
 /**
  * @author Malico <hi@malico.me>
- *
  */
+
 namespace Malico\MobileCM;
 
 /**
- * Network
+ * Network.
  */
 class Network
 {
     /**
-     * Country Prefix
+     * Country Prefix.
      */
     const PREFIX = '237';
 
     /**
-     * Operator Prefixes
+     * Operator Prefixes.
      */
     const OPERATOR_PREFIXES = [
         'mtn' => [
-            67, 650, 651, 652, 653, 654, 680, 681, 682, 683
+            67, 650, 651, 652, 653, 654, 680, 681, 682, 683,
         ],
         'orange' => [
-            69, 655, 656, 657, 658, 659
+            69, 655, 656, 657, 658, 659,
         ],
         'nexttel' => [
-            66
-        ]
+            66,
+        ],
+        'camtel' => [
+            '233', '222', '242', '243',
+        ],
     ];
 
     /**
-     * Check if phone is valid length
+     * Check if phone is valid length.
      *
      * @param string|int $tel
      *
@@ -42,7 +45,7 @@ class Network
     {
         $len = strlen($tel);
 
-        if ($len == 9 || $len  == 12 || $len = 13 || $len == 14) {
+        if ($len == 9 || $len == 12 || $len = 13 || $len == 14) {
             return true;
         }
 
@@ -50,73 +53,87 @@ class Network
     }
 
     /**
-     * Match Tel to Prefix
+     * Match Tel to Prefix.
      *
      * @param string|int $tel
      * @param string $key
      *
      * @return bool
      */
-    protected static function checkNumber($tel, $key)
+    protected static function checkNumber(string | int $tel, $key)
     {
-        if (!self::validLength($tel)) {
+        $tel = \str_replace(' ', '', (string) $tel);
+
+        if (! self::validLength($tel)) {
             return false;
         }
 
         $operator_prefixes = trim(
-            join("|", self::OPERATOR_PREFIXES[$key]),
-            "|"
+            implode('|', self::OPERATOR_PREFIXES[$key]),
+            '|'
         );
-        
-        $expression = "/^((\+|(0{2}))?". self::PREFIX . ")?((". $operator_prefixes . ")([0-9]{6,7}))$/";
+
+        $expression = "/^((\+|(0{2}))?" . self::PREFIX . ')?((' . $operator_prefixes . ')([0-9]{6,7}))$/';
 
         return  preg_match($expression, $tel) ? true : false;
     }
 
     /**
-     * Check if Number is Orange
+     * Check if Number is Orange.
      *
      * @param string | int  $tel
      *
      * @return  bool
      */
-    public static function isOrange($tel) : bool
+    public static function isOrange(string | int $tel) : bool
     {
         return self::checkNumber($tel, 'orange');
     }
 
     /**
-     * Check if Number is MTN
+     * Check if Number is MTN.
      *
      * @param string | int  $tel
      *
      * @return  bool
      */
-    public static function isMTN($tel) : bool
+    public static function isMTN(string | int $tel) : bool
     {
         return self::checkNumber($tel, 'mtn');
     }
 
     /**
-     * Check if Number is Nexttel
+     * Check if Number is Nexttel.
      *
      * @param string | int  $tel
      *
      * @return bool
      */
-    public static function isNexttel($tel) : bool
+    public static function isNexttel(string | int $tel) : bool
     {
         return self::checkNumber($tel, 'nexttel');
     }
 
     /**
-     * Match Number to Operator
+     * Check if Number is Camtel.
+     *
+     * @param   string | int  $tel
+     *
+     * @return  bool
+     */
+    public static function isCamtel(string | int $tel) : bool
+    {
+        return self::checkNumber($tel, 'camtel');
+    }
+
+    /**
+     * Match Number to Operator.
      *
      * @param string | int  $tel
      *
      * @return bool
      */
-    public static function check($tel)
+    public static function check($tel) : string | null
     {
         foreach (self::OPERATOR_PREFIXES as $key => $value) {
             if (self::checkNumber($tel, $key)) {
