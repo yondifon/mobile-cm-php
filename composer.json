@@ -1,25 +1,31 @@
 {
-    "name": "malico/mobile-cm-php",
-    "description": "Get Telephone number's Mobile Network",
-    "license": "MIT",
-    "archive": {
-        "exclude": [
-            "tests"
-        ]
-    },
-    "authors": [
-        {
-            "name": "Malico",
-            "email": "hi@malico.me"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "Malico\\MobileCM\\": "src/"
-        }
-    },
-    "minimum-stability": "dev",
-    "require-dev": {
-        "pestphp/pest": "1.x-dev"
-    }
+	"name": "malico/mobile-cm-php",
+	"description": "Get Telephone number's Mobile Network",
+	"license": "MIT",
+	"archive": {
+		"exclude": [
+			"tests"
+		]
+	},
+	"authors": [
+		{
+			"name": "Malico",
+			"email": "hi@malico.me"
+		}
+	],
+	"scripts": {
+		"test": [
+			"php7.4 ./vendor/bin/pest",
+			"php8.0 ./vendor/bin/pest"
+		]
+	},
+	"autoload": {
+		"psr-4": {
+			"Malico\\MobileCM\\": "src/"
+		}
+	},
+	"minimum-stability": "dev",
+	"require-dev": {
+		"pestphp/pest": "1.x-dev"
+	}
 }
