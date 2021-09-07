@@ -41,7 +41,7 @@ class Network
      *
      * @return bool
      */
-    protected static function validLength($tel) : bool
+    protected static function validLength($tel): bool
     {
         $len = strlen($tel);
 
@@ -60,7 +60,7 @@ class Network
      *
      * @return bool
      */
-    protected static function checkNumber(string | int $tel, $key)
+    protected static function checkNumber(string $tel, $key)
     {
         $tel = \str_replace(' ', '', (string) $tel);
 
@@ -81,11 +81,11 @@ class Network
     /**
      * Check if Number is Orange.
      *
-     * @param string | int  $tel
+     * @param string   $tel
      *
      * @return  bool
      */
-    public static function isOrange(string | int $tel) : bool
+    public static function isOrange(string $tel): bool
     {
         return self::checkNumber($tel, 'orange');
     }
@@ -93,11 +93,11 @@ class Network
     /**
      * Check if Number is MTN.
      *
-     * @param string | int  $tel
+     * @param string   $tel
      *
      * @return  bool
      */
-    public static function isMTN(string | int $tel) : bool
+    public static function isMTN(string $tel): bool
     {
         return self::checkNumber($tel, 'mtn');
     }
@@ -105,11 +105,11 @@ class Network
     /**
      * Check if Number is Nexttel.
      *
-     * @param string | int  $tel
+     * @param string   $tel
      *
      * @return bool
      */
-    public static function isNexttel(string | int $tel) : bool
+    public static function isNexttel(string $tel): bool
     {
         return self::checkNumber($tel, 'nexttel');
     }
@@ -117,11 +117,11 @@ class Network
     /**
      * Check if Number is Camtel.
      *
-     * @param   string | int  $tel
+     * @param   string   $tel
      *
      * @return  bool
      */
-    public static function isCamtel(string | int $tel) : bool
+    public static function isCamtel(string $tel): bool
     {
         return self::checkNumber($tel, 'camtel');
     }
@@ -129,11 +129,11 @@ class Network
     /**
      * Match Number to Operator.
      *
-     * @param string | int  $tel
+     * @param string   $tel
      *
      * @return bool
      */
-    public static function check($tel) : string | null
+    public static function check($tel): string
     {
         foreach (self::OPERATOR_PREFIXES as $key => $value) {
             if (self::checkNumber($tel, $key)) {
